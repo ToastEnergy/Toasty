@@ -1,0 +1,6 @@
+__pycache__/
+cogs/__pycache__/
+.idea/
+.tmp.drivedownload/
+venv/
+config.py
