@@ -4,3 +4,5 @@ cogs/__pycache__/
 .tmp.drivedownload/
 venv/
 config.py
+Pipfile
+Pipfile.lock
