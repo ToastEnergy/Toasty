@@ -7,7 +7,10 @@ os.environ["JISHAKU_HIDE"] = "True"
 
 intents = discord.Intents.default()
 intents.members = True
-bot = commands.Bot(command_prefix=commands.when_mentioned_or(config.bot.prefix, f"{config.bot.prefix} "), status=discord.Status.online, activity=discord.Activity(type=discord.ActivityType.playing, name="Message me for help!"))
+bot = commands.Bot(command_prefix=commands.when_mentioned_or(config.bot.prefix, f"{config.bot.prefix} "),
+                   status=discord.Status.online, activity=discord.Activity(
+                       type=discord.ActivityType.playing, name="Message me for help!"),
+                   intents=intents)
 bot.load_extension("jishaku")
 bot.remove_command("help")
 bot.launchtime = datetime.datetime.now()

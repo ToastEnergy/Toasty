@@ -54,17 +54,17 @@ class DMS(commands.Cog):
                 user = self.bot.get_user(int(message.channel.topic))
                 if not user:
                     return
+                ctx = await self.bot.get_context(message)
+                if ctx.valid:
+                    return
+                emb = discord.Embed(description=f"**{message.author}**: {message.content}", colour=self.bot.colour())
+                if message.attachments:
+                    if message.attachments[0].filename.endswith(("png", "jpg", "jpeg", "webp", "gif")):
+                        emb.set_image(url=message.attachments[0].url)
 
-                else:
-                    if message.content != f"{ctx.prefix}close":
-                        emb = discord.Embed(description=f"**{message.author}**: {message.content}", colour=self.bot.colour())
-                        if message.attachments:
-                            if message.attachments[0].filename.endswith(("png", "jpg", "jpeg", "webp", "gif")):
-                                emb.set_image(url=message.attachments[0].url)
-
-                            else:
-                                emb.description += f"\n\n[{message.attachments[0].filename}]({message.attachments[0].url})"
-                        await user.send(embed=emb)
+                    else:
+                        emb.description += f"\n\n[{message.attachments[0].filename}]({message.attachments[0].url})"
+                await user.send(embed=emb)
 
     @commands.has_permissions(manage_messages=True)
     @commands.command(hidden=True)
